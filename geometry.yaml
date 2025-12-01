@@ -1,0 +1,48 @@
+# To make the code works, the electrodes must have height of at least 1 pixel.
+# Maybe it makes sense for the future to move the "out" of the geometry and fix it a different way
+dimensions:
+  x:
+    - 0.0
+    - 3.0e-3
+  y:
+    - 0.0
+    - 5.0e-3
+  steps:
+    - 150
+    - 250
+physics:
+  dt: 5.0e-10        # time step in seconds (s)
+  mu_e: 0.05        # electron mobility in m^2/(V*s)
+  mu_h: -0.002      # hole mobility in m^2/(V*s)  (nota: convención de signo)
+  # q: 1.602e-19    # elementary charge in coulombs (C)
+  q: 1
+  sim_time: 10.0e-7
+
+  # ===== NUEVOS PARÁMETROS PARA LA ECUACIÓN ADJUNTA =====
+  # Puedes ajustarlos o eliminarlos; el código tiene valores por defecto.
+  # D_e: coeficiente de difusión de electrones (m^2/s). Si se omite, se asume 0.0.
+  D_e: 1.0e-3 
+  # tau_e: tiempo de vida (s). Si se omite o <=0, no se aplica trapping.
+  tau_e: 1.0e-6
+
+electrodes:
+  anodes:
+    - position:
+        x:
+          - 0.0
+          - 3.0e-3
+        y:
+          - 0.0
+          - 0.0
+      value: 0
+  # drifts are a bit different as right now they are 3 together. If this changes, there we will have to change some code
+  drifts: []
+  cathodes:
+    - position:
+        x:
+          - 0.0
+          - 3.0e-3
+        y:
+          - 5.0e-3
+          - 5.0e-3
+      value: -450
